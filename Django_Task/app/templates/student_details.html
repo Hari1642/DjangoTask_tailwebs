@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student_details.css' %}">
+</head>
+<body>
+<div class="top-buttons">
+    <a href="{% url 'home' %}" class="top-button">Home</a>
+    <a href="{% url 'logout_view' %}" class="top-button">Logout</a>
+</div>
+<form>
+  {% csrf_token %}
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Subject</th>
+      <th>Marks</th>
+      <th>Action</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+      <td>{{ item.Name }}</td>
+      <td>{{ item.Subject }}</td>
+      <td>{{ item.Marks }}</td>
+      <td>{{ item.Action }}</td>
+      <td>
+        <a href="edit/{{ item.id }}">Edit</a>
+        <a href="delete/{{ item.id }}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="registration_student_view" class="add-button">Add</a>
+</form>
+</body>
+</html>
